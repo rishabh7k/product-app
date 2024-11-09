@@ -70,3 +70,20 @@ def forgot_password(request):
     else:
         form = PasswordResetForm()
     return render(request, "users/forgot_password.html", {"form": form})
+
+
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from django.contrib import messages
+from django.shortcuts import render, redirect
+
+
+@login_required
+def delete_account(request):
+    if request.method == "POST":
+        user = request.user
+        user.delete()
+        logout(request)
+        messages.success(request, "Your account has been deleted.")
+        return redirect("home")
+    return render(request, "users/delete_account.html")

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,6 +8,34 @@
     <link rel="stylesheet" href="/static/products/css/styles.css" />
   </head>
   <body>
-    <main>{% block content %} {% endblock %}</main>
+    <header>
+      <nav
+        style="
+          position: relative;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <div class="app-name">
+          <h1>Product</h1>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="user-menu">
+          <img
+            src="{% static 'images/user_icon.jpg' %}"
+            alt="User Icon"
+            class="user-icon"
+          />
+          <div class="dropdown-content">
+            <a href="{% url 'delete_account' %}">Delete Account</a>
+          </div>
+        </div>
+        {% endif %}
+      </nav>
+    </header>
+    <main>
+      {% block view_controls %}{% endblock %} {% block content %}{% endblock %}
+    </main>
   </body>
 </html>

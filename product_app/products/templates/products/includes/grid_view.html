@@ -1,5 +1,5 @@
 <!-- products/templates/products/includes/grid_view.html -->
-<div class="grid-view">
+<div class="grid-view" style="border: 1px solid red p; padding-top: 20px">
   {% for product in products %}
   <div class="product-item">
     <a href="{% url 'product_detail' product.id %}" class="product-link">

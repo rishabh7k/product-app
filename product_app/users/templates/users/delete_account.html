@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <h2>Delete Account</h2>
+  <p>
+    Are you sure you want to delete your account? This action cannot be undone.
+  </p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn">Delete my account</button>
+    <a href="{% url 'home' %}" class="btn">Cancel</a>
+  </form>
+  {% for message in messages %}
+  <p>{{ message }}</p>
+  {% endfor %}
+</div>
+{% endblock %}

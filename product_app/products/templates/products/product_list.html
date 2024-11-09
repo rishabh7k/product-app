@@ -1,12 +1,14 @@
 {% extends 'products/base.html' %}
 
-{% block content %}
-<div class="view-controls">
-  <a href="?template=grid" class="btn {% if template == 'grid' %}active{% endif %}">Grid View</a>
-  <a href="?template=list" class="btn {% if template == 'list' %}active{% endif %}">List View</a>
-  <a href="?template=card" class="btn {% if template == 'card' %}active{% endif %}">Card View</a>
+{% block view_controls %}
+<div class="view-controls" style="display: flex; justify-content: flex-end; margin: 20px 0;">
+  <button class="btn view-btn {% if template == 'list' %}active{% endif %}" data-view="list">List</button>
+  <button class="btn view-btn {% if template == 'grid' %}active{% endif %}" data-view="grid">Grid</button>
+  <button class="btn view-btn {% if template == 'card' %}active{% endif %}" data-view="card">Card</button>
 </div>
+{% endblock %}
 
+{% block content %}
 {% if error %}
   <div class="error-message">{{ error }}</div>
 {% else %}

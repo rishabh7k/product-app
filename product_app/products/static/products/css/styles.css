@@ -217,3 +217,159 @@ body {
     content: '.....';
   }
 }
+
+/*delete acc */
+/* .user-menu {
+  position: relative;
+  display: inline-block;
+} */
+
+.user-menu {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  display: inline-block;
+}
+
+.user-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.user-menu:hover .dropdown-content {
+  display: block;
+}
+
+
+
+/* App Name */
+.app-name h1 {
+  font-size: 24px;
+  color: #333;
+  margin: 0;
+}
+
+/* View Controls */
+.view-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin: 20px 0;
+}
+
+.view-btn {
+  padding: 6px 12px;
+  border: 1px solid #007bff;
+  border-radius: 20px;
+  background-color: white;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.view-btn:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.view-btn.active {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Product Detail Layout */
+.product-detail-container {
+  display: flex;
+}
+
+.left-section,
+.right-section {
+  flex: 1;
+}
+
+.slideshow-container {
+  position: relative;
+  max-width: 100%;
+}
+
+.mySlides {
+  display: none;
+}
+
+.mySlides img {
+  width: 100%;
+}
+
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+.dot-container {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  display: inline-block;
+  background-color: #bbb;
+  border-radius: 50%;
+}
+
+.active,
+.dot:hover {
+  background-color: #717171;
+}
+
+.add-to-cart-btn {
+  padding: 10px 20px;
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #ff4a3d;
+}
