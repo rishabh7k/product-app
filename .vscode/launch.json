@@ -1,0 +1,11 @@
+{
+  "name": "Python: Django",
+  "type": "python",
+  "request": "launch",
+  "program": "${workspaceFolder}/product_app/manage.py",  // Specifies manage.py as the entry point
+  "args": ["runserver", "--noreload"],
+  "django": true,
+  "justMyCode": true,
+  "console": "integratedTerminal"
+}
+
