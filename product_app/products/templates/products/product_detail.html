@@ -1,0 +1,29 @@
+<!-- products/templates/products/product_detail.html -->
+{% extends 'products/base.html' %} {% block content %} {% if error %}
+<div class="error-message">{{ error }}</div>
+{% else %}
+<div class="product-detail">
+  <img
+    src="{{ product.image }}"
+    alt="{{ product.name }}"
+    class="product-image rounded"
+  />
+  <h1>{{ product.name }}</h1>
+  <p class="price">${{ product.price }}</p>
+  <p class="description">{{ product.description }}</p>
+
+  <div class="additional-images">
+    {% for image in product.images %}
+    <div class="additional-image">
+      <img src="{{ image.url }}" alt="{{ image.title }}" class="rounded" />
+      <p>{{ image.title }}</p>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="metadata">
+    <p><strong>EAN:</strong> {{ product.ean }}</p>
+    <p><strong>UPC:</strong> {{ product.upc }}</p>
+  </div>
+</div>
+{% endif %} {% endblock %}

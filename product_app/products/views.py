@@ -1,23 +1,57 @@
 from django.shortcuts import render, HttpResponse
-from django.http import JsonResponse
+import requests
+from django.views.generic import DetailView
+
+
+import logging
+from django.shortcuts import render
 import requests
 
+logger = logging.getLogger(__name__)
 
-# Create your views here.
+
 def test(request):
     return HttpResponse("yo")
 
 
 def get_products(request):
-    """
-    Fetches product data from the Faker API and returns the response.
-    """
-    url = "https://fakerapi.it/api/v2/products?_quantity=10&_taxes=12&_categories_type=uuid"
+    """Fetches products and renders them in the template"""
+    template = request.GET.get("template", "grid")
+    # Check if products are already in session
+    products = request.session.get("products")
+
+    if not products:
+        # Fetch data from the API
+        url = "https://fakerapi.it/api/v2/products?_quantity=10"
+        try:
+            response = requests.get(url)
+            response.raise_for_status()
+            data = response.json()
+            products = data["data"]
+            # Store products in session
+            request.session["products"] = products
+            error = None
+        except requests.exceptions.RequestException as e:
+            logger.error("API request failed: %s", e)
+            products = []
+            error = f"An error occurred: {str(e)}"
+    else:
+        error = None
+
+    context = {"products": products, "template": template, "error": error}
+    return render(request, "products/product_list.html", context)
+
+
+def product_detail(request, product_id):
+    """Display detailed product information"""
+    url = f"https://fakerapi.it/api/v2/products?_quantity=1"  # In real app, you'd fetch specific product
     try:
         response = requests.get(url)
         response.raise_for_status()
         data = response.json()
-        return JsonResponse(data)  # Return the JSON data if successful
+        product = data["data"][0]  # For demo, taking first product
+        context = {"product": product, "error": None}
     except requests.exceptions.RequestException as e:
-        # Handle errors gracefully, e.g., log the error and return a user-friendly message
-        return {"error": f"An error occurred: {str(e)}"}
+        context = {"product": None, "error": f"An error occurred: {str(e)}"}
+
+    return render(request, "products/product_detail.html", context)

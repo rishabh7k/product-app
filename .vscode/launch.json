@@ -1,11 +1,18 @@
 {
-  "name": "Python: Django",
-  "type": "python",
-  "request": "launch",
-  "program": "${workspaceFolder}/product_app/manage.py",  // Specifies manage.py as the entry point
-  "args": ["runserver", "--noreload"],
-  "django": true,
-  "justMyCode": true,
-  "console": "integratedTerminal"
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Django",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/product_app/manage.py",  // Specifies manage.py as the entry point
+      "args": ["runserver", "0.0.0.0:8000"],  // Arguments for running the server
+      "django": true,
+      "justMyCode": true,
+      "console": "integratedTerminal",
+      "env": {
+        "DJANGO_SETTINGS_MODULE": "product_app.settings"  // Ensure this points to your settings module
+      }
+    }
+  ]
 }
-

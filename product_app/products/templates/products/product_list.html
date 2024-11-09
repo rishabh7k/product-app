@@ -1,0 +1,22 @@
+<!-- products/templates/products/product_list.html -->
+{% extends 'products/base.html' %}
+
+{% block content %}
+<div class="view-controls">
+  <a href="?template=grid" class="btn {% if template == 'grid' %}active{% endif %}">Grid View</a>
+  <a href="?template=list" class="btn {% if template == 'list' %}active{% endif %}">List View</a>
+  <a href="?template=card" class="btn {% if template == 'card' %}active{% endif %}">Card View</a>
+</div>
+
+{% if error %}
+  <div class="error-message">{{ error }}</div>
+{% else %}
+  {% if template == 'grid' %}
+    {% include 'products/includes/grid_view.html' %}
+  {% elif template == 'list' %}
+    {% include 'products/includes/list_view.html' %}
+  {% else %}
+    {% include 'products/includes/card_view.html' %}
+  {% endif %}
+{% endif %}
+{% endblock %}
