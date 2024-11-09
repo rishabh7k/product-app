@@ -1,37 +1,27 @@
-from django.contrib.auth.models import (
-    AbstractBaseUser,
-    BaseUserManager,
-    PermissionsMixin,
-)
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, username, password=None):
         if not username:
-            raise ValueError("Users must have a username")
-
+            raise ValueError("The Username is required")
         user = self.model(username=username)
         user.set_password(password)
-        user.save(using=self._db)
+        user.save()
         return user
 
     def create_superuser(self, username, password=None):
-        user = self.create_user(
-            username=username,
-            password=password,
-        )
-        user.is_admin = True
+        user = self.create_user(username=username, password=password)
         user.is_staff = True
         user.is_superuser = True
-        user.save(using=self._db)
+        user.save()
         return user
 
 
-class CustomUser(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField(max_length=30, unique=True)
+class CustomUser(AbstractBaseUser):
+    username = models.CharField(max_length=150, unique=True)
     is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
 
     objects = CustomUserManager()

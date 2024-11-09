@@ -33,8 +33,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "users",
     "products",
-    "django.contrib.admin",
     "django.contrib.auth",
+    "django.contrib.admin",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
@@ -47,7 +47,7 @@ MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
-    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",  # Keep this if using sessions
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -69,10 +69,12 @@ DEBUG_TOOLBAR_PANELS = [
     "debug_toolbar.panels.redirects.RedirectsPanel",
     "debug_toolbar.panels.profiling.ProfilingPanel",
 ]
+import os
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -84,26 +86,26 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = "product_app.wsgi.application"
 
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# settings.py
 DATABASES = {
     "default": {
         "ENGINE": "mssql",
         "NAME": "ProductsUserDb",
-        "HOST": "LAPTOP-0IIC72GF",  # e.g., 'localhost' or the IP address of your server
-        "Trusted_Connection": "yes",
+        "HOST": "LAPTOP-0IIC72GF",
         "OPTIONS": {
-            "driver": "ODBC Driver 17 for SQL Server",  # or the version you installed
+            "driver": "ODBC Driver 17 for SQL Server",
             "Trusted_Connection": "yes",
         },
     }
 }
 
+AUTH_USER_MODEL = "users.CustomUser"
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -123,7 +125,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = "users.CustomUser"
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
