@@ -1,7 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from .forms import CustomUserCreationForm, CustomUserAuthenticationForm
+from .forms import (
+    CustomUserCreationForm,
+    CustomUserAuthenticationForm,
+    PasswordResetForm,
+)
+from .models import CustomUser
 
 
 def register(request):
@@ -41,3 +46,27 @@ def login_view(request):
     else:
         form = CustomUserAuthenticationForm()
     return render(request, "users/common_logic.html", {"form": form})
+
+
+def forgot_password(request):
+    if request.method == "POST":
+        form = PasswordResetForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            new_password = form.cleaned_data["new_password"]
+            try:
+                user = CustomUser.objects.get(username=username)
+                if user.check_password(new_password):
+                    messages.error(
+                        request, "New password cannot be the same as the old password."
+                    )
+                else:
+                    user.set_password(new_password)
+                    user.save()
+                    messages.success(request, "Password updated successfully.")
+                    return redirect("login")
+            except CustomUser.DoesNotExist:
+                messages.error(request, "Username does not exist.")
+    else:
+        form = PasswordResetForm()
+    return render(request, "users/forgot_password.html", {"form": form})

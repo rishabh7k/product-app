@@ -20,3 +20,8 @@ class CustomUserCreationForm(forms.ModelForm):
 class CustomUserAuthenticationForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
+
+
+class PasswordResetForm(forms.Form):
+    username = forms.CharField()
+    new_password = forms.CharField(widget=forms.PasswordInput)
