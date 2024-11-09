@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse
 import requests
 from django.views.generic import DetailView
 
+from django.contrib.auth.decorators import login_required
 
 import logging
 from django.shortcuts import render
@@ -14,6 +15,7 @@ def test(request):
     return HttpResponse("yo")
 
 
+@login_required
 def get_products(request):
     """Fetches products and renders them in the template"""
     template = request.GET.get("template", "grid")
