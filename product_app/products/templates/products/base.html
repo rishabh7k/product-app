@@ -1,4 +1,4 @@
-{% load static %}
+{% comment %} {% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,5 +37,52 @@
     <main>
       {% block view_controls %}{% endblock %} {% block content %}{% endblock %}
     </main>
+  </body>
+</html>
+{% endcomment %}
+
+<!-- Updated base.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}ShopEase{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'products/css/styles.css' %}" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="navbar-brand">
+          <a href="{% url 'home' %}">ShopEase</a>
+        </div>
+        <div class="navbar-links">
+          <a href="{% url 'home' %}">Home</a>
+          <a href="{% url 'login' %}">Login</a>
+          <a href="{% url 'register' %}">Register</a>
+          {% if user.is_authenticated %}
+          <div class="user-menu">
+            <img
+              src="{% static 'images/user_icon.jpg' %}"
+              alt="User Icon"
+              class="user-icon"
+            />
+            <div class="dropdown-content">
+              <a href="{% url 'delete_account' %}">Delete Account</a>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="container">
+        {% block view_controls %}{% endblock %} {% block content %}{% endblock%}
+      </div>
+    </main>
+    <footer>
+      <p>&copy; 2024 ShopEase</p>
+    </footer>
   </body>
 </html>
