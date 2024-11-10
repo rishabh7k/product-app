@@ -3,26 +3,13 @@
 {% block content %}
 <div class="product-detail-container">
   <div class="left-section">
-    <!-- Debug information -->
-    <div style="background: #f8f8f8; padding: 10px; margin-bottom: 10px;">
-      <p>Debug Info:</p>
-      <p>Product name: {{ product.name }}</p>
-      <p>Images count: {{ product.images.all|length }}</p>
-      <p>Raw images data: {{ product.images.all }}</p>
-    </div>
-
     <div class="slideshow-container">
-      {% if product.images.all %}
-        {% for image in product.images.all %}
+      {% if product.images %}
+        {% for image in product.images %}
         <div class="mySlides fade">
-          <p>Image URL: {{ image.url }}</p>
           <img src="{{ image.url }}" alt="{{ product.name }}" style="width:100%; display:block;">
         </div>
-        {% empty %}
-        <p>No images found in for loop</p>
         {% endfor %}
-      {% else %}
-        <p>No images available</p>
       {% endif %}
     </div>
   </div>
@@ -31,6 +18,14 @@
     <h2>{{ product.name }}</h2>
     <p>{{ product.description }}</p>
     <p>Price: ${{ product.price }}</p>
+    <section class="details">
+      <h3>Details</h3>
+      <ul>
+          {% for image in product.images %}
+              <li>{{ image.description }}</li>
+          {% endfor %}
+      </ul>
+  </section>
     <button class="add-to-cart-btn">Add to Cart</button>
   </div>
 </div>
