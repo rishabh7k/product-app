@@ -3,7 +3,7 @@ import requests
 from django.views.generic import DetailView
 
 from django.contrib.auth.decorators import login_required
-
+from django.conf import settings
 import logging
 from django.shortcuts import render
 import requests
@@ -23,10 +23,10 @@ def get_products(request):
     products = request.session.get("products")
 
     if not products:
-        # Fetch data from the API
-        url = "https://fakerapi.it/api/v2/products?_quantity=10"
+        url = settings.FAKER_API_URL
+        params = {"_quantity": settings.FAKER_API_QUANTITY}
         try:
-            response = requests.get(url)
+            response = requests.get(url, params=params)
             response.raise_for_status()
             data = response.json()
             products = data["data"]

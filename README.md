@@ -6,9 +6,8 @@ This is a Django-based web application for managing products and users. The appl
 
 - Python 3.8+
 - Django 5.0.9
+- HTML/CSS
 - Microsoft SQL Server
-- Node.js (for managing frontend dependencies, if any)
-- Git
 
 ## Technology Stack
 
@@ -76,7 +75,7 @@ Open your web browser and go to `http://127.0.0.1:8000`.
 
 ## Demo
 
-Add a GIF or screenshots here to demonstrate the functionality of the application.
+[Watch the video on YouTube](https://www.youtube.com/watch?v=VZMGY-7N7BE)
 
 ## Additional Information
 
