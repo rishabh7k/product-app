@@ -325,22 +325,50 @@ form textarea {
 }
 
 /* Slideshow */
-.slideshow-container {
+/* .slideshow-container {
   position: relative;
   max-width: 100%;
   margin-bottom: 20px;
+} */
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
 }
 
-.mySlides {
+@-webkit-keyframes fade {
+  from {
+    opacity: .4
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: .4
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+/* .mySlides {
   display: none;
-}
+  position: relative;
+} */
 
-.mySlides img {
+/* .mySlides img {
   width: 100%;
   border-radius: 8px;
-}
+} */
 
-.prev,
+/* .prev,
 .next {
   cursor: pointer;
   position: absolute;
@@ -354,7 +382,7 @@ form textarea {
   transition: color 0.3s ease;
   border-radius: 0 3px 3px 0;
   user-select: none;
-}
+} */
 
 .next {
   right: 0;
@@ -370,7 +398,7 @@ form textarea {
   text-align: center;
 }
 
-.dot {
+/* .dot {
   cursor: pointer;
   height: 15px;
   width: 15px;
@@ -379,7 +407,7 @@ form textarea {
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.3s ease;
-}
+} */
 
 .dot.active,
 .dot:hover {
@@ -441,3 +469,4 @@ footer {
     width: 100%;
   }
 }
+

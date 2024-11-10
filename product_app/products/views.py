@@ -45,15 +45,12 @@ def get_products(request):
 
 
 def product_detail(request, product_id):
-    """Display detailed product information"""
-    url = f"https://fakerapi.it/api/v2/products?_quantity=1"  # In real app, you'd fetch specific product
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-        data = response.json()
-        product = data["data"][0]  # For demo, taking first product
-        context = {"product": product, "error": None}
-    except requests.exceptions.RequestException as e:
-        context = {"product": None, "error": f"An error occurred: {str(e)}"}
+    products = request.session.get("products", [])
+    product = next((p for p in products if p["id"] == product_id), None)
 
-    return render(request, "products/product_detail.html", context)
+    if not product:
+        return render(
+            request, "products/product_detail.html", {"error": "Product not found"}
+        )
+
+    return render(request, "products/product_detail.html", {"product": product})
