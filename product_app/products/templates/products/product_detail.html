@@ -29,9 +29,28 @@
 </div>
 {% endblock %}
 
+<!-- products/templates/products/product_detail.html -->
 <script>
   let slideIndex = 1;
-  showSlides(slideIndex);
+
+  function showSlides(n) {
+    const slides = document.getElementsByClassName("mySlides");
+    const dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {
+      slideIndex = 1;
+    }
+    if (n < 1) {
+      slideIndex = slides.length;
+    }
+    for (let slide of slides) {
+      slide.style.display = "none";
+    }
+    for (let dot of dots) {
+      dot.classList.remove("active");
+    }
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].classList.add("active");
+  }
 
   function plusSlides(n) {
     showSlides((slideIndex += n));
@@ -41,22 +60,22 @@
     showSlides((slideIndex = n));
   }
 
-  function showSlides(n) {
-    let slides = document.getElementsByClassName("mySlides");
-    let dots = document.getElementsByClassName("dot");
-    if (n > slides.length) {
-      slideIndex = 1;
-    }
-    if (n < 1) {
-      slideIndex = slides.length;
-    }
-    for (let i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-    for (let i = 0; i < dots.length; i++) {
-      dots[i].classList.remove("active");
-    }
-    slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].classList.add("active");
-  }
+  document.addEventListener("DOMContentLoaded", () => {
+    showSlides(slideIndex);
+
+    document.querySelector(".prev").addEventListener("click", () => {
+      plusSlides(-1);
+    });
+
+    document.querySelector(".next").addEventListener("click", () => {
+      plusSlides(1);
+    });
+
+    const dots = document.querySelectorAll(".dot");
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        currentSlide(index + 1);
+      });
+    });
+  });
 </script>

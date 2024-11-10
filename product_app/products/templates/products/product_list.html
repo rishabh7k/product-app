@@ -2,9 +2,9 @@
 
 {% block view_controls %}
 <div class="view-controls" style="display: flex; justify-content: flex-end; margin: 20px 0;">
-  <button class="btn view-btn {% if template == 'list' %}active{% endif %}" data-view="list">List</button>
-  <button class="btn view-btn {% if template == 'grid' %}active{% endif %}" data-view="grid">Grid</button>
-  <button class="btn view-btn {% if template == 'card' %}active{% endif %}" data-view="card">Card</button>
+  <a href="?template=list" class="btn view-btn {% if template == 'list' %}active{% endif %}">List</a>
+  <a href="?template=grid" class="btn view-btn {% if template == 'grid' %}active{% endif %}">Grid</a>
+  <a href="?template=card" class="btn view-btn {% if template == 'card' %}active{% endif %}">Card</a>
 </div>
 {% endblock %}
 
