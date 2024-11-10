@@ -63,7 +63,16 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-### 6. Run the Development Server
+### 6. Configure `.env`.
+
+Configure a `.env` based on `.env.example` provided, and place it in project root, with `manage.py`.
+
+```env
+FAKER_API_URL=https://fakerapi.it/api/v2/products
+FAKER_API_QUANTITY=10
+```
+
+### 7. Run the Development Server
 
 ```sh
 python manage.py runserver
