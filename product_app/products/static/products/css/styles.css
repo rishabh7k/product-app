@@ -1,9 +1,7 @@
-/* Updated styles.css */
-
 /* Import Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-/* General Styles */
+/* Base Styles */
 body {
   font-family: 'Roboto', sans-serif;
   background-color: #f4f6f8;
@@ -12,7 +10,15 @@ body {
   color: #333;
 }
 
-/* Navbar Styles */
+/* Layout */
+.container {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -46,7 +52,7 @@ body {
   color: #3498db;
 }
 
-/* User Menu Styles */
+/* User Menu */
 .user-menu {
   position: relative;
   margin-left: 20px;
@@ -91,35 +97,11 @@ body {
   display: block;
 }
 
-/* Container Styles */
-.container {
-  max-width: 1200px;
-  margin: 80px auto;
-  padding: 20px;
-}
-
-/* Form Styles */
+/* Forms */
 form {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-form .btn {
-  width: 100%;
-  padding: 12px;
-  background: #3498db;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background 0.3s ease;
-  margin-top: 15px;
-}
-
-form .btn:hover {
-  background: #2980b9;
 }
 
 form input,
@@ -133,7 +115,24 @@ form textarea {
   font-size: 14px;
 }
 
-/* Message Styles */
+.btn {
+  width: 100%;
+  padding: 12px;
+  background: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+  margin-top: 15px;
+}
+
+.btn:hover {
+  background: #2980b9;
+}
+
+/* Messages */
 .message {
   margin-top: 15px;
   padding: 10px;
@@ -151,50 +150,37 @@ form textarea {
   color: #721c24;
 }
 
-/* Footer Styles */
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #ffffff;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-  position: relative;
-  width: 100%;
-  margin-top: 40px;
-}
-
 /* Product Views */
 .grid-view,
 .list-view,
 .card-view {
   display: grid;
   gap: 20px;
+  padding: 0 15px;
+  box-sizing: border-box;
 }
 
 .grid-view {
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
 
-.list-view .product-item {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  border: 1px solid #ddd;
-  background: #ffffff;
-  border-radius: 8px;
-}
-
 .card-view {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
+/* Product Items */
+.product-item,
 .card {
+  position: relative;
   background: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 10px;
 }
 
+.product-item:hover,
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -206,8 +192,7 @@ footer {
 }
 
 .product-image,
-.card-image img,
-.list-view .product-image {
+.card-image img {
   width: 100%;
   height: 200px;
   object-fit: cover;
@@ -216,9 +201,12 @@ footer {
 }
 
 .product-image:hover,
-.card-image img:hover,
-.list-view .product-image:hover {
+.card-image img:hover {
   transform: scale(1.05);
+}
+
+.card-content {
+  padding: 15px;
 }
 
 .product-name {
@@ -237,6 +225,32 @@ footer {
   margin: 10px 0;
 }
 
+.product-category {
+  color: #666;
+  font-size: 0.9em;
+}
+
+/* List View Specific */
+.list-view .product-item {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+}
+
+.list-view .product-image-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.list-view .product-image {
+  height: 300px;
+}
+
+.list-view .product-details {
+  margin-top: 15px;
+}
+
+/* Card Footer */
 .card-footer {
   display: flex;
   justify-content: space-between;
@@ -246,12 +260,30 @@ footer {
   border-top: 1px solid #eee;
 }
 
-.product-category {
-  color: #666;
-  font-size: 0.9em;
+/* Buttons */
+.add-button {
+  background-color: #ff6f61;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Button Styles */
+.add-button:hover {
+  background-color: #ff4a3d;
+  transform: scale(1.1);
+}
+
 .add-to-cart-btn {
   padding: 10px 20px;
   background-color: #ff6f61;
@@ -292,7 +324,7 @@ footer {
   color: #ffffff;
 }
 
-/* Slideshow Styles */
+/* Slideshow */
 .slideshow-container {
   position: relative;
   max-width: 100%;
@@ -349,12 +381,23 @@ footer {
   transition: background-color 0.3s ease;
 }
 
-.active,
+.dot.active,
 .dot:hover {
   background-color: #ff6f61;
 }
 
-/* Responsive Styles */
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  width: 100%;
+  margin-top: 40px;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
@@ -368,24 +411,21 @@ footer {
   .navbar-links a {
     margin-left: 0;
     margin-right: 15px;
-  }
-
-  .container {
-    margin: 40px 20px;
-    padding: 10px;
-  }
-
-  .user-icon {
-    width: 30px;
-    height: 30px;
+    font-size: 14px;
   }
 
   .navbar-brand a {
     font-size: 20px;
   }
 
-  .navbar-links a {
-    font-size: 14px;
+  .container {
+    margin: 40px auto;
+    padding: 0 15px;
+  }
+
+  .user-icon {
+    width: 30px;
+    height: 30px;
   }
 }
 
@@ -399,150 +439,5 @@ footer {
 
   .add-to-cart-btn {
     width: 100%;
-  }
-}
-
-/* Updated styles.css */
-
-/* Add Button Styles */
-.add-button {
-  background-color: #ff6f61;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 24px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.add-button:hover {
-  background-color: #ff4a3d;
-  transform: scale(1.1);
-}
-
-/* Adjust Product Item Positioning for Relative Positioning */
-.product-item,
-.card {
-  position: relative;
-}
-
-/* Container Padding */
-.container {
-  max-width: 1200px;
-  margin: 80px auto;
-  padding: 0 20px;
-  box-sizing: border-box;
-}
-
-.grid-view,
-.list-view,
-.card-view {
-  padding: 0 15px;
-  box-sizing: border-box;
-}
-
-/* List View Styles */
-.list-view .product-item {
-  display: block;
-  padding: 15px;
-  border: 1px solid #ddd;
-  background: #ffffff;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  position: relative;
-}
-
-.list-view .product-image-container {
-  width: 100%;
-  overflow: hidden;
-}
-
-.list-view .product-image {
-  width: 100%;
-  height: 300px;
-  /* border-radius: 8px; */
-  /* object-fit: cover; */
-}
-
-.list-view .product-details {
-  margin-top: 15px;
-}
-
-.list-view .add-button {
-  margin-top: 15px;
-  background-color: #ff6f61;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 24px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.list-view .add-button:hover {
-  background-color: #ff4a3d;
-  transform: scale(1.1);
-}
-
-/* Remove truncation */
-.product-description {
-  color: #666;
-  margin: 10px 0;
-}
-
-/* Grid View Styles */
-.grid-view {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  grid-gap: 20px;
-  padding: 0 15px;
-  box-sizing: border-box;
-}
-
-/* Card View Styles */
-.card-view {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 20px;
-  padding: 0 15px;
-  box-sizing: border-box;
-}
-.card-content {
-  padding: 15px;
-}
-
-/* Add Button Styles */
-.add-button {
-  background-color: #ff6f61;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 24px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.add-button:hover {
-  background-color: #ff4a3d;
-  transform: scale(1.1);
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .container {
-    margin: 40px auto;
-    padding: 0 15px;
   }
 }
